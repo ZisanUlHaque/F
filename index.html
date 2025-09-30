@@ -34,6 +34,10 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- css -->
+     <link rel="stylesheet" href="style.css">
+
   </head>
   <body>
     <!-- navbar -->
@@ -118,18 +122,54 @@
       <div class="flex flex-col md:flex-row lg:flex justify-between mx-10">
         <div>
           <h2 class="font-bold text-2xl">Categories</h2>
-          <div id="Category-container" class=" mt-6 grid grid-cols-2 gap-4 lg:grid-cols-1"></div>
+          <div>
+            <button
+              id="plant-section-title"
+              class="md: p-1 rounded md:text-xl text-start"
+            >
+              All Plants
+            </button>
+          </div>
+          <div
+            id="Category-container"
+            class="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-1"
+          ></div>
         </div>
 
-        <div id="Plant-Container" class=" grid grid-cols-1 lg:grid-cols-3 gap-5  mt-5 lg:mt-0">
+        <div
+          id="Plant-Container"
+          class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-5 lg:mt-0"
+        ></div>
 
-        </div>
+        <div class="bg-white p-5 rounded-xl w-64 ml-8 shadow-lg">
+          <h2 class="text-2xl font-bold mb-4 border-b pb-2">Your Cart</h2>
 
-        <div class="bg-white p-5 rounded-md w-60 ml-8 text-center">
-          <h2 class="font-bold text-2xl">Your Cart</h2>
+          <!-- Cart items container -->
+          <div
+            id="cart-items"
+            class="flex flex-col gap-3 mb-4 max-h-80 overflow-y-auto"
+          >
+            <!-- Added items will appear here -->
+          </div>
+
+          <!-- Total -->
+          <div
+            class="flex justify-between items-center font-semibold text-lg border-t pt-2"
+          >
+            <span>Total:</span>
+            <span id="cart-total">0</span> Tk
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+      <div class="card bg-base-100 w-90 shadow-sm">
+        <div id="details-container"></div>
+      </div>
+    </dialog>
 
     <!-- About the Campaign -->
 
@@ -222,6 +262,3 @@
     <script src="script/script.js"></script>
   </body>
 </html>
-
-
-
