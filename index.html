@@ -86,10 +86,18 @@
 
     <!-- hero section -->
 
-     <section class="bg-[#CFF0DC] h-[400px] relative">
-      <img src="assets/hero-leaf1.png" alt="" class="hidden lg:block lg:w-120 absolute bottom-0 "/>
-      <img src="assets/hero-leaf2.png" alt="" class="hidden lg:block lg:w-120  absolute bottom-0 right-0" />
-      <div class="mx-auto space-y-4 relative text-center pt-30 ">
+    <section class="bg-[#CFF0DC] h-[400px] relative">
+      <img
+        src="assets/hero-leaf1.png"
+        alt=""
+        class="hidden lg:block lg:w-120 absolute bottom-0"
+      />
+      <img
+        src="assets/hero-leaf2.png"
+        alt=""
+        class="hidden lg:block lg:w-120 absolute bottom-0 right-0"
+      />
+      <div class="mx-auto space-y-4 relative text-center pt-30">
         <h1 class="font-bold text-4xl">Plant a Tree, Grow a Future</h1>
         <p>
           Join our mission to plant 1 million trees and make the Earth greener
@@ -101,14 +109,36 @@
           Get Involved
         </button>
       </div>
-    </section> 
+    </section>
+
+    <!-- Choose Your Trees -->
+
+    <section class="py-10 bg-[#F0FDF4]">
+      <h1 class="text-3xl font-bold text-center mb-8">Choose Your Trees</h1>
+      <div class="flex flex-col md:flex-row lg:flex justify-between mx-10">
+        <div>
+          <h2 class="font-bold text-2xl">Categories</h2>
+          <div id="Category-container" class=" mt-6 grid grid-cols-2 gap-4 lg:grid-cols-1"></div>
+        </div>
+
+        <div id="Plant-Container" class=" grid grid-cols-1 lg:grid-cols-3 gap-5  mt-5 lg:mt-0">
+
+        </div>
+
+        <div class="bg-white p-5 rounded-md w-60 ml-8 text-center">
+          <h2 class="font-bold text-2xl">Your Cart</h2>
+        </div>
+      </div>
+    </section>
 
     <!-- About the Campaign -->
 
     <section class="bg-[#F0FDF4] py-10">
       <h1 class="text-3xl font-bold text-center mb-8">About the Campaign</h1>
-      <div class="flex flex-col md:flex-row lg:flex items-center mx-auto gap-10 px-6 max-w-7xl">
-        <img src="assets/about.png" alt="" class="w-90" />
+      <div
+        class="flex flex-col md:flex-row lg:flex items-center mx-auto gap-10 px-6 max-w-6xl"
+      >
+        <img src="assets/about.png" alt="" class="w-60 lg:w-90" />
         <div>
           <p>
             Green Earth is a global tree plantation initiative dedicated to
@@ -151,24 +181,31 @@
       <h1 class="text-3xl font-bold text-white text-center mb-8">
         Plant a Tree Today
       </h1>
-      <div class=" flex justify-center">
+      <div class="flex justify-center">
         <fieldset
           class="fieldset bg-[#15803D] border-none rounded-box w-xs lg:w-xl p-4 py-10 px-5"
         >
-        <input type="text" class="input lg:w-xl" placeholder="Your Name" />
-        <input type="email" class="input lg:w-xl" placeholder="Your Email Address" />
-          
-        <fieldset class="fieldset">
-          <select class="select lg:w-xl">
-            <option disabled selected>Number of Trees</option>
-            <option>1 Tree - 5$</option>
-            <option>3 Tree - 10$</option>
-            <option>5 Tree - 15$</option>
-          </select>
-        </fieldset>
-          <button class="btn text-[#15803D] bg-[#FACC15] mt-4 rounded-3xl">Donate Now</button>
-        </fieldset>
+          <input type="text" class="input lg:w-xl" placeholder="Your Name" />
+          <input
+            type="email"
+            class="input lg:w-xl"
+            placeholder="Your Email Address"
+          />
 
+          <fieldset class="fieldset">
+            <select class="select lg:w-xl">
+              <option disabled selected>Number of Trees</option>
+              <option>1 Tree - 5$</option>
+              <option>3 Tree - 10$</option>
+              <option>5 Tree - 15$</option>
+            </select>
+          </fieldset>
+          <button
+            class="btn text-[#15803D] bg-[#FACC15] mt-4 rounded-3xl text-xl"
+          >
+            Donate Now
+          </button>
+        </fieldset>
       </div>
     </section>
 
@@ -181,5 +218,10 @@
         <p>© 2025 Green Earth. All Rights Reserved.</p>
       </aside>
     </footer>
+
+    <script src="script/script.js"></script>
   </body>
 </html>
+
+
+
