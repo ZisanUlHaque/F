@@ -1,3 +1,5 @@
+// cart
+
 let cart = [];
 let totalPrice = 0;
 
@@ -28,7 +30,7 @@ function displayCart() {
 }
 
 
-
+// category
 
 const loadCategory = () => {
   fetch("https://openapi.programming-hero.com/api/categories")
@@ -36,32 +38,6 @@ const loadCategory = () => {
     .then((data) => displayCategory(data.categories));
 };
 
-const loadLevelCategory = (id) => {
-  const url = `https://openapi.programming-hero.com/api/category/${id}`;
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => displayCategoryPlants(data.plants));
-};
-
-const loadPlantDetails = async (id) => {
-  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
-
-  const res = await fetch(url);
-  const details = await res.json();
-  displayPlantsDetails(details.plants);
-};
-
-const loadAllPlants = () => {
-  document.getElementById("plant-section-title").innerText = "All Trees";
-  const url = "https://openapi.programming-hero.com/api/plants";
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      // শুধু প্রথম ৬টা প্ল্যান্ট নাও
-      const firstSix = data.plants.slice(0, 6);
-      displayPlantShows(firstSix);
-    });
-};
 
 const displayCategory = (cats) => {
   // 1.get the container
@@ -72,13 +48,30 @@ const displayCategory = (cats) => {
   for (let cat of cats) {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
-        <button onClick="loadLevelCategory(${cat.id})" class="md:p-1 rounded md:text-xl text-start">
+        <button id="cat-btn-${cat.id}" onClick="loadLevelCategory(${cat.id})" class="p-1 md:p-1 rounded md:text-xl text-start w-30 lg:w-45 cats-btn">
         ${cat.category_name}
         </button>
         `;
     levelContainer.append(btnDiv);
   }
 };
+
+
+// LevelCategory
+
+const loadLevelCategory = (id) => {
+  const url = `https://openapi.programming-hero.com/api/category/${id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      removeActive();
+      const cliclBtn = document.getElementById(`cat-btn-${id}`);
+      // console.log(cliclBtn);
+      cliclBtn.classList.add("active");
+      displayCategoryPlants(data.plants);
+    });
+};
+
 
 const displayCategoryPlants = (cats) => {
   const levelContainer = document.getElementById("Plant-Container");
@@ -105,7 +98,7 @@ const displayCategoryPlants = (cats) => {
                 <div class="badge font-semibold text-[#15803D] bg-[#DCFCE7]">${cat.category}</div>
                 <div class="badge font-semibold"><i class="fa-solid fa-bangladeshi-taka-sign"></i>${cat.price}</div>
                 </div>
-                <button class="btn text-white bg-[#15803D] mt-4 rounded-3xl">
+                <button  onclick='addToCart(${JSON.stringify(cat)})'  class="btn text-white bg-[#15803D] mt-4 rounded-3xl">
                 Add to Cart
                 </button>
             </div>
@@ -114,6 +107,18 @@ const displayCategoryPlants = (cats) => {
     levelContainer.append(btnDiv);
   }
 };
+
+
+// PlantDetails or modal
+
+const loadPlantDetails = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+
+  const res = await fetch(url);
+  const details = await res.json();
+  displayPlantsDetails(details.plants);
+};
+
 
 const displayPlantsDetails = (plantsDetails) => {
   const levelContainer = document.getElementById("details-container");
@@ -136,9 +141,7 @@ const displayPlantsDetails = (plantsDetails) => {
                 <div class="badge font-semibold text-[#15803D] bg-[#DCFCE7]">${plantsDetails.category}</div>
                 <div class="badge font-semibold"><i class="fa-solid fa-bangladeshi-taka-sign"></i>${plantsDetails.price}</div>
                 </div>
-                <button class="btn text-white bg-[#15803D] mt-4 rounded-3xl">
-                Add to Cart
-                </button>
+                  <button onclick='addToCart(${JSON.stringify(plantsDetails)})' class="btn text-white bg-[#15803D] mt-4 rounded-3xl">Add to Cart</button>
                     <div class="modal-action">
                     <form  method="dialog">
                     <button class="btn flex-1 justify-center">Close</button>
@@ -148,6 +151,22 @@ const displayPlantsDetails = (plantsDetails) => {
             </div>`;
   document.getElementById("my_modal_5").showModal();
 };
+
+
+// AllPlants
+
+const loadAllPlants = () => {
+  document.getElementById("plant-section-title").innerText = "All Trees";
+  const url = "https://openapi.programming-hero.com/api/plants";
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+
+      const firstSix = data.plants.slice(0, 6);
+      displayPlantShows(firstSix);
+    });
+};
+
 
 const displayPlantShows = (plants) => {
   const levelContainer = document.getElementById("Plant-Container");
@@ -175,10 +194,38 @@ const displayPlantShows = (plants) => {
   });
 };
 
+// "All Plants" button click
 document.getElementById("plant-section-title").addEventListener("click", () => {
+  removeActive(); // baki sob active remove
+  document.getElementById("plant-section-title").classList.add("active"); // All Plants active
   loadAllPlants();
 });
 
-loadAllPlants();
 
+//remove active
+
+const removeActive = () => {
+  document.querySelectorAll(".cats-btn, #plant-section-title").forEach(btn => btn.classList.remove("active"));
+};
+
+
+
+
+// Initial setup
+document.getElementById("plant-section-title").classList.add("active");
+loadAllPlants();
 loadCategory();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
